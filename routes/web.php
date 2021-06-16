@@ -14,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('guest/welcome');
 });
 
-Auth::routes();
+// Rotte Per autenticazione ( se sottolineato bug)
 
-Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
+// Auth::routes(['register' => false]); // Per eliminare dalle rotte qualcosa che non vogliamo includere
+
+Route::get('/admin', 'HomeController@index')->name('home');
