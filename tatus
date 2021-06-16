@@ -1,0 +1,47 @@
+[33mcommit b8bb9364fed9655c4adac43a81e2ad9d0452df33[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: GiuseppeMandriani <giuseppe.mandriani@gmail.com>
+Date:   Wed Jun 16 19:37:15 2021 +0200
+
+    add columns
+
+[33mcommit 6fd9e63180ad37b0be3556fa40340d359db6785f[m
+Author: GiuseppeMandriani <giuseppe.mandriani@gmail.com>
+Date:   Wed Jun 16 19:02:10 2021 +0200
+
+    add migrations
+
+[33mcommit cff1f0bc6c0ee5d60893c7a75de2147ad962b6c7[m
+Author: GiuseppeMandriani <giuseppe.mandriani@gmail.com>
+Date:   Wed Jun 16 18:09:41 2021 +0200
+
+    add seeder
+
+[33mcommit 7838ac96661a61f0d2ac237576cd91204dc7fcd8[m
+Author: GiuseppeMandriani <giuseppe.mandriani@gmail.com>
+Date:   Wed Jun 16 17:45:19 2021 +0200
+
+    correct library faker
+
+[33mcommit a5463246ea1781ee9d739c42950a56c19e7d4424[m
+Author: GiuseppeMandriani <giuseppe.mandriani@gmail.com>
+Date:   Wed Jun 16 17:22:18 2021 +0200
+
+    add fakerphp
+
+[33mcommit 3f818b4ba892045fcfd471a2b57f7f04a4b5ce04[m
+Author: GiuseppeMandriani <giuseppe.mandriani@gmail.com>
+Date:   Wed Jun 16 17:05:17 2021 +0200
+
+    add sintax in web and create Model and migrations
+
+[33mcommit 24ef3d701ab8d2d475899850bb21968fe06e9a0c[m
+Author: GiuseppeMandriani <giuseppe.mandriani@gmail.com>
+Date:   Wed Jun 16 16:37:52 2021 +0200
+
+    add HomeController
+
+[33mcommit 7fcb58af5330f0cb5be5c42b3691754b7a1d25a1[m
+Author: GiuseppeMandriani <giuseppe.mandriani@gmail.com>
+Date:   Wed Jun 16 14:49:16 2021 +0200
+
+    start project, add auth ui laravel and packagesnpm
