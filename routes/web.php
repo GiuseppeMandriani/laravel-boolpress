@@ -22,4 +22,13 @@ Route::get('/', function () {
 Auth::routes();
 // Auth::routes(['register' => false]); // Per eliminare dalle rotte qualcosa che non vogliamo includere
 
-Route::get('/admin', 'HomeController@index')->name('home');
+Route::prefix('admin')
+    ->namespace('Admin')
+    ->middleware('auth')
+    ->name('admin.')
+    ->group(function(){
+        // Rotta Admin Home
+        Route::get('/admin', 'HomeController@index')->name('home');
+    });
+
+// Route::get('/admin', 'HomeController@index')->name('home');
