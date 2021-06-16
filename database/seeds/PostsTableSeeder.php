@@ -24,7 +24,7 @@ class PostsTableSeeder extends Seeder
             $new_post->title =$faker->text(50);
             $new_post->slug = Str::slug($new_post->title,'-');
             $new_post->content = $faker->paragraphs(3, true);
-            $new_post->date = $faker->datetime();
+            $new_post->pubblication_date = $faker->datetime();
 
 
 
