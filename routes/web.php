@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('guest/welcome');
-});
+
 
 // Rotte Per autenticazione ( se sottolineato bug)
 
@@ -33,6 +31,11 @@ Route::prefix('admin')
         // Rotte resource Posts
         Route::resource('/posts', 'PostController');
     });
+
+// Front-Office
+Route::get('{any?}', function () {
+    return view('guest/home');
+})->where("any", ".*");
 
 
 
