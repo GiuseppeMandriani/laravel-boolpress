@@ -47,6 +47,15 @@ class PostController extends Controller
         $data['slug'] = Str::slug($data['title'],'-');
 
         // Creaazione e salvataggio in db
+            // Nuova istanza
+            $new_post = new Post();
+
+            // Popolo
+            $new_post->fill($data); // Fillable
+
+            // Salvataggio
+            $new_post->save();
+
     }
 
     /**
