@@ -56,6 +56,8 @@ class PostController extends Controller
             // Salvataggio
             $new_post->save();
 
+            return redirect()->route('admin.posts.show', $new_post->id);
+
     }
 
     /**
