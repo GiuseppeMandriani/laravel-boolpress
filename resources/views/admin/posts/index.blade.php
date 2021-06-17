@@ -4,8 +4,9 @@
 
     <div class="container">
         <h1>Our Posts</h1>
+        <a class="btn btn-primary mt-5" href="{{ route ('admin.posts.create')}}">Create New post</a>
 
-        <table class="table">
+        <table class="table mt-5">
             <thead>
                 <tr>
                     <td>ID</td>
