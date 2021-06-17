@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -39,7 +40,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //VALIDAZIONE
+        $data = $request->all();
+
+        // Generaz slug
+        $data['slug'] = Str::slug($data['title'],'-');
+
+        // Creaazione e salvataggio in db
     }
 
     /**
