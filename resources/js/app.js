@@ -27,6 +27,12 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
+
+// INIT VUE MAIN ISTANCE
+
+import App from './App.vue';
+
+const root = new Vue({
+    el: '#root',
+    render: h => h(App) //Function con parametro hook
 });
