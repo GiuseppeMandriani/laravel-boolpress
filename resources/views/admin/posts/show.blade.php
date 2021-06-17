@@ -2,14 +2,21 @@
 
 @section('content')
     <div class="container">
-        <h1>{{ $post->title }}</h1>
+        <h1>Titolo del Post: {{ $post->title }}</h1>
 
-        <div class="mb-5">
-            <a href="{{ route('admin.posts.edit', $post->id)}}">Edit</a>
+
+        <div>
+            <h3>Content Post:</h3>
+            <p>{{ $post->content}}</p>
         </div>
 
         <div>
-            <p>{{ $post->content}}</p>
+            <h4>Pubblication Date</h4>
+            <p>{{ $post->pubblication_date}}</p>
+        </div>
+
+        <div class="mb-5">
+            <a class="btn btn-danger" href="{{ route('admin.posts.edit', $post->id)}}">Edit</a>
         </div>
 
     </div>

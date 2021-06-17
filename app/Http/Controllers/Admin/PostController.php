@@ -41,8 +41,15 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //VALIDAZIONE
-        $data = $request->all();
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'pubblication_date' => 'required',
+        ]);
 
+
+
+        $data = $request->all();
         // Generaz slug
         $data['slug'] = Str::slug($data['title'],'-');
 
