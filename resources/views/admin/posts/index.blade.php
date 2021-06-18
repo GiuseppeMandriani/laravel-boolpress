@@ -6,7 +6,7 @@
         <h1>Our Posts</h1>
         <a class="btn btn-primary mt-5" href="{{ route ('admin.posts.create')}}">Create New post</a>
 
-        <table class="table mt-5">
+        <table class="table table-striped table-dark mt-5">
             <thead>
                 <tr>
                     <td>ID</td>

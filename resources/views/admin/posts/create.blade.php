@@ -61,7 +61,7 @@
                         <input class="form-control" type="date" name="pubblication_date" placeholder="2020-12-31" value={{old('pubblication_date')}}>
                     </div>
 
-                    {{-- Controllo Validaznione metodo 2 --}}
+                    {{-- Controllo Validazione metodo 2 --}}
 
                     @error('pubblication_date')
                         <p class="invalid feedback">{{ $message }}</p>
@@ -70,7 +70,7 @@
                     
 
                     {{-- Non utilizzo la a --}}
-                    <button class="btn btn-primary"type="submit">Create</button>
+                    <button class="btn btn-danger"type="submit">Create</button>
                     
                 
                 
