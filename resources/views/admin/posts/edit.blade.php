@@ -2,7 +2,9 @@
 
 @section('content')
     <div class="container">
-        <h1 class="mb-5">Create New Post</h1>
+        <h1 class="mb-5">Edit post: 
+        <a href="{{ route ('admin.posts.show', $post->id) }}">{{$post->title}}</a>
+         </h1>
 
 
         <div class="row">
@@ -27,14 +29,14 @@
 
 
 
-                <form action="{{ route('admin.posts.store') }}" method="POST">
+                <form action="{{ route('admin.posts.update', $post->id) }}" method="POST">
                     @csrf
-                    @method('POST')
+                    @method('PATCH')
 
                     <div class="mb-3">
                     {{-- Metto * per far capire che sono campi obbligatori --}}
                         <label for="title" class="form-label">Title*</label>
-                        <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" placeholder="" value="{{ old('title') }}">
+                        <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" placeholder="" value="{{ old('title', $post->title) }}">
 
 
                     {{-- Controllo Validaznione metodo 2 --}}
@@ -46,7 +48,7 @@
                     <div class="mb-3">
                     {{-- Metto * per far capire che sono campi obbligatori --}}
                         <label for="content" class="form-label">Content*</label>
-                        <textarea class="form-control @error('content') is-invalid @enderror"  name="content" id="content" rows="6" >{{ old('content') }}</textarea>
+                        <textarea class="form-control @error('content') is-invalid @enderror"  name="content" id="content" rows="6" >{{ old('content', $post->content) }}</textarea>
 
                     {{-- Controllo Validaznione metodo 2 --}}
 
@@ -58,7 +60,7 @@
                     <div class="mb-3">
                     {{-- Metto * per far capire che sono campi obbligatori --}}
                         <label for="pubblication_date" class="form-label">Pubblication Date*</label>
-                        <input class="form-control" type="text" disabled id="pubblication_date" name="pubblication_date" placeholder="{{ $now }}">
+                        <input class="form-control" type="text" disabled id="pubblication_date" name="pubblication_date" placeholder="{{ date('Y-m-d') }}">
 
                         {{-- <p>Pubblication Date</p>
                         <span>{{ $now }}</span> --}}
@@ -75,7 +77,7 @@
                     
 
                     {{-- Non utilizzo la a --}}
-                    <button class="btn btn-danger"type="submit">Create</button>
+                    <button class="btn btn-warning"type="submit">Edit</button>
                     
                 
                 

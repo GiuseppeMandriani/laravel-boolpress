@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -29,7 +30,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $now = Carbon::now()->format('Y-m-d');   
+        return view('admin.posts.create', compact('now'));
     }
 
     /**
@@ -42,14 +44,21 @@ class PostController extends Controller
     {
         //VALIDAZIONE
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|unique:posts|max:10',
             'content' => 'required',
-            'pubblication_date' => 'required',
+            // 'pubblication_date' => 'required',
+        ],[
+            // Messaggi errori personalizzati       :attribute prende il valore
+            'required' => 'Il :attribute è obbligatorio!!',
+            'unique' => 'il :attribute è obbligatorio!!',
+            'max' => 'Max :max carratteri per il :attribute',
         ]);
 
 
 
         $data = $request->all();
+
+        $data['pubblication_date'] = Carbon::now();
         // Generaz slug
         $data['slug'] = Str::slug($data['title'],'-');
 
@@ -92,7 +101,21 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        // $data['pubblication_date'] = Carbon::now();
+
+        // $now = Carbon::now();
+
+
+        $post = Post::find($id);
+
+        if(! $post){
+            abort(404);
+        }
+
+        return view('admin.posts.edit', compact('post'));
+
+
     }
 
     /**
@@ -104,7 +127,21 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //VALIDATE
+        $data = $request->all();
+
+        $data['pubblication_date'] = Carbon::now();
+
+        $post = Post::find($id);
+
+        // Generazione slug e verifica se titolo è cambiato
+        if($data['title'] != $post->title){
+            $data['slug'] = Str::slug($data['title'], '-');
+        }
+
+        $post->update($data); //Fillable
+
+        return redirect()->route('admin.posts.show', $post->id);
     }
 
     /**

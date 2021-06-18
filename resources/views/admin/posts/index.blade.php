@@ -21,9 +21,11 @@
                         <td>{{ $post->id}}</td>
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->pubblication_date}}</td>
-                        <td>EDIT</td>
                         <td>
-                            <a class="btn btn-success" href="{{route('admin.posts.show', $post->id)}}">SHOW</a></td>
+                            <a class="btn btn-secondary" href="{{ route('admin.posts.edit', $post->id) }}">EDIT</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-light" href="{{route('admin.posts.show', $post->id)}}">SHOW</a></td>
                         <td>DELETE</td>
                     </tr>
                 @endforeach
