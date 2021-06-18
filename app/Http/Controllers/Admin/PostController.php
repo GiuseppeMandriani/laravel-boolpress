@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -127,7 +128,24 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //VALIDATE
+        //VALIDAZIONE
+        $request->validate([
+            'title' => [
+                'required',
+                Rule::unique('posts')->ignore($id),
+                'max:10',
+            ],
+            'content' => 'required',
+            // 'pubblication_date' => 'required',
+        ],[
+            // Messaggi errori personalizzati       :attribute prende il valore
+            'required' => 'Il :attribute è obbligatorio!!',
+            'unique' => 'il :attribute è obbligatorio!!',
+            'max' => 'Max :max carratteri per il :attribute',
+        ]);
+
+
+
         $data = $request->all();
 
         $data['pubblication_date'] = Carbon::now();
@@ -152,6 +170,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+
+        $post->delete();
+
+        return redirect()->route('admin.posts.index')->with('deleted', $post->title);      //  WITH SERVE PER RITORNARE UN MESSAGGIO
     }
 }
