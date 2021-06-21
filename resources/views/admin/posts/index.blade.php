@@ -22,6 +22,7 @@
                     <td>ID</td>
                     <td>TITLE</td>
                     <td>DATE</td>
+                    <td>CATEGORY</td>
                     <td colspan="3">ACTIONS</td>
                 </tr>
             </thead>
@@ -31,6 +32,7 @@
                         <td>{{ $post->id}}</td>
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->pubblication_date}}</td>
+                        <td>@if($post->category) {{ $post->category->name }}</td> @endif</td>
                         <td>
                             <a class="btn btn-secondary" href="{{ route('admin.posts.edit', $post->id) }}">EDIT</a>
                         </td>
@@ -49,5 +51,25 @@
                 @endforeach
             </tbody>
         </table>
+
+        {{-- GET POSTS BY CATEGORY --}}
+
+        <h2>Post by Category</h2>
+        @foreach ($categories as $category )
+            <h3 class="mt-4">{{ $category->name }}</h3>
+
+            @forelse ($category->posts as $post)
+                <h4>
+                    <a href="{{ route('admin.posts.show', $post->id) }}">{{ $post->title }}</a>
+                </h4>
+                
+            @empty
+                <h6>No post for this category</h6>
+                <a class="btn btn-primary" href="{{ route('admin.posts.create')}}">Create</a>
+                
+            @endforelse
+            
+        @endforeach
+
     </div>
 @endsection

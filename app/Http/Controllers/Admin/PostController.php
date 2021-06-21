@@ -19,9 +19,11 @@ class PostController extends Controller
      */
     public function index()
     {
+
+        $categories = Category::all();
         $posts = Post::all();
 
-        return view('admin.posts.index', compact('posts'));
+        return view('admin.posts.index', compact('posts','categories'));
 
     }
 
@@ -52,7 +54,7 @@ class PostController extends Controller
     {
         //VALIDAZIONE
         $request->validate([
-            'title' => 'required|unique:posts|max:10',
+            'title' => 'required|unique:posts|max:200',
             'content' => 'required',
             'category_id' => 'nullable|exists:categories,id',
             // 'pubblication_date' => 'required',
@@ -142,7 +144,7 @@ class PostController extends Controller
             'title' => [
                 'required',
                 Rule::unique('posts')->ignore($id),
-                'max:10',
+                'max:200',
             ],
             'content' => 'required',
             'category_id' =>'nullable|exists:categories,id'
