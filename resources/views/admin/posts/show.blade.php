@@ -10,6 +10,14 @@
             <p>{{ $post->content}}</p>
         </div>
 
+        {{-- @dump($post->category) --}}
+
+        @if ($post->category)
+            <h3>Category: {{$post->category->name}}</h3>    
+        @elseif ($post->category == null)
+            <h3>Nessuna categoria selezionata</h3>
+        @endif
+
         <div>
             <h4>Pubblication Date</h4>
             <p>{{ $post->pubblication_date}}</p>

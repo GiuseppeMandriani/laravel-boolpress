@@ -56,8 +56,24 @@
                     </div>
 
                     <div class="mb-3">
-                    {{-- Metto * per far capire che sono campi obbligatori --}}
-                        <label for="pubblication_date" class="form-label">Pubblication Date*</label>
+                        {{-- Non obbligatoria perchè abbiamo possibilità del null --}}
+                        <label for="category_id" class="form-label">Category</label>
+                        <select name="category_id" id="category_id" class="form-control @error('content') is-invalid @enderror">
+
+                            <option value="">-- Select Category --</option>
+                            @foreach ($categories as $category)
+                                <option value="{{$category->id}}"
+                                @if ($category->id == old('category_id')) selected @endif>
+                                    {{ $category->name}}
+                                </option>
+                            @endforeach
+                        </select>
+                    
+                    </div>
+
+                    <div class="mb-3">
+                    
+                        <label for="pubblication_date" class="form-label">Pubblication Date</label>
                         <input class="form-control" type="text" disabled id="pubblication_date" name="pubblication_date" placeholder="{{ $now }}">
 
                         {{-- <p>Pubblication Date</p>

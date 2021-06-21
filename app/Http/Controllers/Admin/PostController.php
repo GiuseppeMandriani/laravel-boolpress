@@ -8,6 +8,7 @@ use App\Post;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
+use App\Category;
 
 class PostController extends Controller
 {
@@ -30,9 +31,15 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
+        // Aggiornato per categories 
+        $categories = Category::all();
+
+
         $now = Carbon::now()->format('Y-m-d');   
-        return view('admin.posts.create', compact('now'));
+
+
+        return view('admin.posts.create', compact('now','categories'));
     }
 
     /**
@@ -47,6 +54,7 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|unique:posts|max:10',
             'content' => 'required',
+            'category_id' => 'nullable|exists:categories,id',
             // 'pubblication_date' => 'required',
         ],[
             // Messaggi errori personalizzati       :attribute prende il valore
@@ -106,7 +114,8 @@ class PostController extends Controller
         // $data['pubblication_date'] = Carbon::now();
 
         // $now = Carbon::now();
-
+        
+        $categories = Category::all();
 
         $post = Post::find($id);
 
@@ -114,7 +123,7 @@ class PostController extends Controller
             abort(404);
         }
 
-        return view('admin.posts.edit', compact('post'));
+        return view('admin.posts.edit', compact('post', 'categories'));
 
 
     }
@@ -136,6 +145,7 @@ class PostController extends Controller
                 'max:10',
             ],
             'content' => 'required',
+            'category_id' =>'nullable|exists:categories,id'
             // 'pubblication_date' => 'required',
         ],[
             // Messaggi errori personalizzati       :attribute prende il valore
