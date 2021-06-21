@@ -51,7 +51,7 @@ class PostController extends Controller
         ],[
             // Messaggi errori personalizzati       :attribute prende il valore
             'required' => 'Il :attribute è obbligatorio!!',
-            'unique' => 'il :attribute è obbligatorio!!',
+            'unique' => 'il :attribute è già presente!!',
             'max' => 'Max :max carratteri per il :attribute',
         ]);
 
@@ -140,7 +140,7 @@ class PostController extends Controller
         ],[
             // Messaggi errori personalizzati       :attribute prende il valore
             'required' => 'Il :attribute è obbligatorio!!',
-            'unique' => 'il :attribute è obbligatorio!!',
+            'unique' => 'il :attribute è già presente!!',
             'max' => 'Max :max carratteri per il :attribute',
         ]);
 
