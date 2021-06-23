@@ -32,6 +32,16 @@ class Post extends Model
     }
 
 
+    /**
+    *   RELAZIONE CON TAGS
+    *   posts-tags  Relazione Many to many
+    */
+
+    public function tags(){
+        return $this->belongsToMany('App\Tag'); // Name Space Model
+    }
+
+
 
 
 }
