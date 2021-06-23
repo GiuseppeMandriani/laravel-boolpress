@@ -78,8 +78,6 @@
 
                         {{-- <p>Pubblication Date</p>
                         <span>{{ $now }}</span> --}}
-
-                    
                     </div>
 
                     {{-- Controllo Validazione metodo 2 --}}
@@ -87,6 +85,25 @@
                     @error('pubblication_date')
                         <p class="invalid feedback">{{ $message }}</p>
                     @enderror
+
+                    {{-- TAGS --}}
+
+                    <h4>Tags</h4>
+
+                    <div class="mb-3">
+                        @foreach ($tags as $tag)
+                            <span class="d-inline-block mr-3">
+                                <input type="text">
+                                <label for=""></label>
+                            </span>
+                            
+                        @endforeach
+
+                    </div>
+
+
+
+
 
                     
 

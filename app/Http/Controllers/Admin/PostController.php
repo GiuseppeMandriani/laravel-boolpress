@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use App\Category;
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -37,11 +38,14 @@ class PostController extends Controller
         // Aggiornato per categories 
         $categories = Category::all();
 
+        // Aggiornato per tags
+        $tags = Tag::all();
+
 
         $now = Carbon::now()->format('Y-m-d');   
 
 
-        return view('admin.posts.create', compact('now','categories'));
+        return view('admin.posts.create', compact('now','categories','tags'));
     }
 
     /**
