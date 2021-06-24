@@ -90,6 +90,28 @@
                         <p class="invalid feedback">{{ $message }}</p>
                     @enderror
 
+                    <div class="mb-3">
+                        @foreach ($tags as $tag)
+                            <span class="d-inline-block mr-3">
+                                <input type="checkbox" name="tags[]" id="tag{{$loop->iteration}}" value="{{ $tag->id }}"
+                                @if ($errors->any() && in_array($tag->id, old('tags')))
+                                    checked
+                                @elseif(! $errors->any() && $post->tags->contains($tag->id))
+                                checked
+                                @endif
+                                >
+                                <label for="tag{{$loop->iteration}}">{{ $tag->name }}</label>
+                            </span>
+                            
+                        @endforeach
+
+                        
+                    @error('tags')
+                        <p class="invalid feedback">{{ $message }}</p>
+                    @enderror
+
+                    </div>
+
                     
 
                     {{-- Non utilizzo la a --}}

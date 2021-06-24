@@ -61,6 +61,7 @@ class PostController extends Controller
             'title' => 'required|unique:posts|max:200',
             'content' => 'required',
             'category_id' => 'nullable|exists:categories,id',
+            'tags' => 'nullable|exists:tags,id',
             // 'pubblication_date' => 'required',
         ],[
             // Messaggi errori personalizzati       :attribute prende il valore
@@ -86,6 +87,12 @@ class PostController extends Controller
 
             // Salvataggio
             $new_post->save();
+
+            // Salvo relazione con tags in pivot
+
+            if(array_key_exists('tags',$data)){
+                $new_post->tags()->attach($data['tags']);       // Aggiunge nuovi record in pivot
+            }
 
             return redirect()->route('admin.posts.show', $new_post->id);
 
@@ -125,11 +132,13 @@ class PostController extends Controller
 
         $post = Post::find($id);
 
+        $tags = Tag::all();
+
         if(! $post){
             abort(404);
         }
 
-        return view('admin.posts.edit', compact('post', 'categories'));
+        return view('admin.posts.edit', compact('post', 'categories','tags'));
 
 
     }
@@ -151,7 +160,8 @@ class PostController extends Controller
                 'max:200',
             ],
             'content' => 'required',
-            'category_id' =>'nullable|exists:categories,id'
+            'category_id' =>'nullable|exists:categories,id',
+            'tags' =>'nullable|exists:tags,id'
             // 'pubblication_date' => 'required',
         ],[
             // Messaggi errori personalizzati       :attribute prende il valore
@@ -175,6 +185,12 @@ class PostController extends Controller
 
         $post->update($data); //Fillable
 
+        if(array_key_exists('tags', $data)){
+            $post->tags()->sync($data['tags']);     // Aggiunge/Rimuove, aggiorna row pivot
+        } else{
+            $post->tags()->detach();        // Rimuove row da tabella pivot
+        }
+
         return redirect()->route('admin.posts.show', $post->id);
     }
 
@@ -188,7 +204,12 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
+        
+        // Pulizia orfani
+        $post->tags()->detach();        
         $post->delete();
+
+
 
         return redirect()->route('admin.posts.index')->with('deleted', $post->title);      //  WITH SERVE PER RITORNARE UN MESSAGGIO
     }

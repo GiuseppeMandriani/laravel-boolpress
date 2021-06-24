@@ -55,7 +55,6 @@
         {{-- GET POSTS BY CATEGORY --}}
 
         <h2>Post by Category</h2>
-        <h3>list</h3>
         @foreach ($categories as $category )
             <h3 class="mt-4">{{ $category->name }}</h3>
 

@@ -93,11 +93,21 @@
                     <div class="mb-3">
                         @foreach ($tags as $tag)
                             <span class="d-inline-block mr-3">
-                                <input type="text">
-                                <label for=""></label>
+                                <input type="checkbox" name="tags[]" id="tag{{$loop->iteration}}" value="{{ $tag->id }}"
+                                @if (in_array($tag->id, old('tags',[])))
+                                    checked
+                                @endif
+                                >
+
+                                <label for="tag{{$loop->iteration}}">{{ $tag->name }}</label>
                             </span>
                             
                         @endforeach
+
+                        
+                    @error('tags')
+                        <p class="invalid feedback">{{ $message }}</p>
+                    @enderror
 
                     </div>
 
