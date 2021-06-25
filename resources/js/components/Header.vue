@@ -1,13 +1,20 @@
 <template>
     <header class="header-content">
         <div class="left">
-            <a href="">Boolpress</a>
+            <router-link :to="{ name: 'home' }">BrandSite</router-link>
         </div>
 
         <nav>
             <ul class="menu-nav">
-                <li><a href="">Link 1</a></li>
-                <li><a href="">Link 2</a></li>
+                <li>
+                    <router-link :to="{ name: 'home' }">Home</router-link>
+                </li>
+                <li>
+                    <router-link :to="{ name: 'blog' }">Blog</router-link>
+                </li>
+                <li>
+                    <router-link :to="{ name: 'about' }">About</router-link>
+                </li>
             </ul>
         </nav>
     </header>
@@ -34,5 +41,9 @@ export default {
     li {
         margin: 0 1rem;
     }
+}
+
+.active {
+    color: #fff;
 }
 </style>
