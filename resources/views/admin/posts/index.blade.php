@@ -31,6 +31,8 @@
                     <tr>
                         <td>{{ $post->id}}</td>
                         <td>{{ $post->title }}</td>
+                        {{-- <td>{{ $post->pubblication_date->format('d/m/y')}}</td> --}}
+                        {{-- <td>{{ $post->pubblication_date->diffForHumans()}}</td> --}}
                         <td>{{ $post->pubblication_date}}</td>
                         <td>@if($post->category) {{ $post->category->name }}</td> @endif</td>
                         <td>
