@@ -16,8 +16,10 @@ window.Vue = require('vue');
 // INIT VUE MAIN ISTANCE
 
 import App from './App.vue';
+import router from './routes.js';
 
 const root = new Vue({
     el: '#root',
+    router: router,
     render: h => h(App) //Function con parametro hook
 });
