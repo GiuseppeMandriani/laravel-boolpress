@@ -13,6 +13,9 @@ class CreatePostTagTable extends Migration
      */
     public function up()
     {
+        
+        // Schema::dropIfExists('post_tag');
+
         Schema::create('post_tag', function (Blueprint $table) {
             $table->id();
             // $table->timestamps();
@@ -42,5 +45,6 @@ class CreatePostTagTable extends Migration
     public function down()
     {
         Schema::dropIfExists('post_tag');
+        
     }
 }
