@@ -7,18 +7,20 @@
                 <div class="content">
                     <p>{{ post.content }}</p>
                 </div>
-                <div>
+                <div class="category">
                     <span v-if="post.category">{{ post.category.name }}</span>
                     <span v-else>Nessuna Categoria</span>
                 </div>
 
-                <span
+                <!-- <span
                     v-for="tag in post.tags"
                     :key="`tag-${tag.id}`"
                     class="tag"
                 >
                     {{ tag.name }}
-                </span>
+                </span> -->
+
+                <Tags :tags="post.tags" />
             </div>
         </div>
 
@@ -28,11 +30,13 @@
 
 <script>
 import axios from "axios";
+import Tags from "../components/Tags.vue";
 import Loader from "../components/Loader.vue";
 export default {
     name: "PostDetail",
     components: {
-        Loader
+        Loader,
+        Tags
     },
     data() {
         return {
@@ -63,13 +67,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.tag {
+.category {
     display: inline-block;
-    margin: 0.25rem;
-    padding: 0.35rem;
-    font-size: 0.75rem;
-    color: #fff;
-    background-color: dodgerblue;
-    border-radius: 10px;
 }
 </style>
