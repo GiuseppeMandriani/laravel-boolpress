@@ -9,7 +9,11 @@
 
             <h2>{{ post.pubblication_date }}</h2>
 
-            <a href="">Read More</a>
+            <!-- <a href="">Read More</a> -->
+            <router-link
+                :to="{ name: 'post-detail', params: { slug: post.slug } }"
+                >Read More</router-link
+            >
         </article>
 
         <div class="navigation">

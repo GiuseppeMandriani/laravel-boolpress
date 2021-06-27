@@ -20,4 +20,18 @@ class PostController extends Controller
         $posts = Post::paginate(5);
         return response()->json($posts);
     }
+
+
+    /**
+     *  GET POST DETAIL BY SLUG
+     */
+
+    public function show($slug){
+        // dump($slug);
+
+                                            // Con with unisco caratteristiche di category e tags 
+        $post = Post::where('slug',$slug)->with(['category', 'tags'])->first(); 
+
+        return response()->json($post);
+    }
 }
