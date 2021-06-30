@@ -4,10 +4,19 @@
     <div class="container">
         <h1>Titolo del Post: {{ $post->title }}</h1>
 
-
-        <div>
+        {{-- Post Image --}}
+        <div class="mb-5">
             <h3>Content Post:</h3>
-            <p>{{ $post->content}}</p>
+            <div class="row">
+            @if ($post->cover)
+                <div class="col-md-6">
+                    <img src="{{ asset('storage/' . $post->cover)}}" alt="{{ $post->title}}">
+                </div>
+            @endif
+                <div class="{{ ($post->cover == null) ? 'col' : 'col-md-6' }}">
+                    <p>{{ $post->content}}</p>
+                </div>
+            </div>
         </div>
 
         {{-- @dump($post->category) --}}
