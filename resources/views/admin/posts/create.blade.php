@@ -27,10 +27,12 @@
 
 
 
-                <form action="{{ route('admin.posts.store') }}" method="POST">
+                <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+
                     @method('POST')
 
+                    {{-- Title --}}
                     <div class="mb-3">
                     {{-- Metto * per far capire che sono campi obbligatori --}}
                         <label for="title" class="form-label">Title*</label>
@@ -43,6 +45,8 @@
                         @enderror
                     </div>
 
+
+                    {{-- Content --}}
                     <div class="mb-3">
                     {{-- Metto * per far capire che sono campi obbligatori --}}
                         <label for="content" class="form-label">Content*</label>
@@ -54,7 +58,8 @@
                             <p class="feedback">{{ $message }}</p>
                         @enderror
                     </div>
-
+                    
+                    {{-- Category --}}
                     <div class="mb-3">
                         {{-- Non obbligatoria perchè abbiamo possibilità del null --}}
                         <label for="category_id" class="form-label">Category</label>
@@ -70,7 +75,8 @@
                         </select>
                     
                     </div>
-
+                        
+                    {{-- Pubblication Date --}}
                     <div class="mb-3">
                     
                         <label for="pubblication_date" class="form-label">Pubblication Date</label>
@@ -86,7 +92,7 @@
                         <p class="invalid feedback">{{ $message }}</p>
                     @enderror
 
-                    {{-- TAGS --}}
+                    {{-- Tags --}}
 
                     <h4>Tags</h4>
 
@@ -111,11 +117,18 @@
 
                     </div>
 
-
-
-
-
+                    {{-- Post-Image --}}
+                    <div class="mb-3">
+                        <label for="cover" class="form-label">Post-Image</label>
+                        <div>
+                            <input type="file" name="cover" id="cover" >
+                        </div>
+                        @error('cover')
+                            <div>{{ $message}}</div>
+                        @enderror
                     
+                    </div>
+
 
                     {{-- Non utilizzo la a --}}
                     <button class="btn btn-danger"type="submit">Create</button>

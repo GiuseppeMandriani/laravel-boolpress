@@ -14,6 +14,7 @@ class Post extends Model
         'slug', 
         'pubblication_date',
         'content',
+        'cover',
     ];
 
 

@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Post;
 use Illuminate\Support\Str;
-use Carbon\Carbon;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
+use App\Post;
+use Carbon\Carbon;
 use App\Category;
 use App\Tag;
 
@@ -62,6 +63,7 @@ class PostController extends Controller
             'content' => 'required',
             'category_id' => 'nullable|exists:categories,id',
             'tags' => 'nullable|exists:tags,id',
+            'cover' => 'nullable|mimes:jpg,jpeg',
             // 'pubblication_date' => 'required',
         ],[
             // Messaggi errori personalizzati       :attribute prende il valore
@@ -73,6 +75,15 @@ class PostController extends Controller
 
 
         $data = $request->all();
+
+
+        // Aggiungi cover-image
+        if(array_key_exists('cover',$data)){
+            $img_path = Storage::put('posts-covers', $data['cover']);   //posts-covers è la cartella dove andranno a finire le img che verranno caricate
+
+            // Override cover file with path
+            $data['cover'] = $img_path;
+        }
 
         $data['pubblication_date'] = Carbon::now();
         // Generaz slug
