@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <v-app>
         <Header />
 
         <main>
@@ -10,7 +10,7 @@
         <footer>
             FOOTER HERE
         </footer>
-    </div>
+    </v-app>
 </template>
 
 <script>
@@ -25,6 +25,7 @@ export default {
 </script>
 
 <style lang="scss">
+/* @import "~vuetify/dist/vuetify.min.css"; */
 @import "../sass/frontoffice/_utilities.scss";
 
 body {
