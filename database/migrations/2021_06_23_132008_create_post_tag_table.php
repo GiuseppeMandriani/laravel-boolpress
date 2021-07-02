@@ -24,7 +24,7 @@ class CreatePostTagTable extends Migration
             $table->unsignedBigInteger('post_id');
             $table->foreign('post_id')
                 ->references('id')
-                ->on('post')
+                ->on('posts')
                 ->onDelete('cascade');      // Cascade, nel caso si cancella un post in cascata viene cancellata corrispondenza
 
 
