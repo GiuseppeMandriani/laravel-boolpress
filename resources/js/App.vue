@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style lang="scss">
-/* @import "~vuetify/dist/vuetify.min.css"; */
+@import "~vuetify/dist/vuetify.min.css";
 @import "../sass/frontoffice/_utilities.scss";
 
 body {

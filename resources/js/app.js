@@ -9,7 +9,7 @@ window.Vue = require('vue');
 // Importazione Vuetify
 import Vuetify from 'vuetify';
 
-// import vuetify from 'vuetify/lib';
+// import vuetify from 'vuetify/lib';   Secondo metodo per importazione
 
 // window.axios = require('axios');
 

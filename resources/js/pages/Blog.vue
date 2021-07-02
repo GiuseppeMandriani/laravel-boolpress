@@ -15,8 +15,27 @@
                 >Read More</router-link
             >
         </article>
+        <div class="text-center">
+            <v-container>
+                <v-row justify="center">
+                    <v-col cols="8">
+                        <v-container class="max-width">
+                            <v-pagination
+                                class="my-4"
+                                v-model="pagination.current"
+                                :length="pagination.last"
+                                @input="getPosts(pagination.current)"
+                                prev-page="$prev"
+                                next-page="$next"
+                            >
+                            </v-pagination>
+                        </v-container>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </div>
 
-        <div class="navigation">
+        <!-- <div class="navigation">
             <button
                 v-show="pagination.current > 1"
                 @click="getPosts(pagination.current - 1)"
@@ -38,7 +57,7 @@
             >
                 Next
             </button>
-        </div>
+        </div> -->
     </div>
 </template>
 
